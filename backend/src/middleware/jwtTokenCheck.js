@@ -9,13 +9,7 @@ async function CheckToken(token) {
     }
     else{
         const secret = process.env.JWTSECRET
-        
-        if(jwt.verify(token,secret)){
-            return res.status(200).json({message:"verified"})
-        }
-        else{
-            return res.status(400).json({message:"failed to verify"})
-        }
+         console.log(jwt.verify(token,secret))
     }
 }
 

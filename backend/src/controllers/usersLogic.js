@@ -19,6 +19,17 @@ async function CreateUser(req,res) {
     }
 }
 
+async function GetAllUsers(req,res) {
+    try{
+        const users = await UserModel.find()
+
+        return res.status(200).json({message:"users successfully fetched",data:users})
+    }
+    catch(err){
+        console.log("failed to get all users")
+    }
+}
+
 
 async function DeleteUserById(req,res) {
     try{
@@ -48,4 +59,4 @@ async function  DeleteAllUsers(req,res) {
 }
 
 
-export {CreateUser,DeleteUserById,DeleteAllUsers}
+export {CreateUser,GetAllUsers,DeleteUserById,DeleteAllUsers}

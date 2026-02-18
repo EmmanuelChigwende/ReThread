@@ -5,7 +5,6 @@ import dotevn from  'dotenv'
 import DatabaseCon from './config/databaseConnnect.js'
 
 // routes
-import prodRoutes from './routes/productsRoutes.js'
 import listRoutes from './routes/admin/listingRoute.js'
 import useRoutes from './routes/users/userRoutes.js'
 import authRoute from './routes/authenticationRoutes.js'
@@ -17,7 +16,6 @@ const port = process.env.PORT || 4000
 
 
 server.use(json())
-server.use('/api',prodRoutes)
 server.use('/api',listRoutes)
 server.use('/api',useRoutes)
 server.use('/api',authRoute)
