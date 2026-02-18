@@ -14,7 +14,8 @@ async function GetAllListings(req,res){
 async function CreateListing(req,res){
     try{
         const newListing =  req.body
-        const listingOwner = req.params._id
+        const listingOwner = req.body.id
+        const listingImages = req.body.images
 
         if(!newListing){
             return res.status(400).json({message:"no listing was provided"})
