@@ -1,9 +1,8 @@
-import express from 'express'
-import { GetAllListings } from '../../controllers/listingLogic.js'
+import express from "express";
+import { GetAllListings } from "../../controllers/listingLogic.js";
 
-const listRoutes = express.Router()
+const listRoutes = express.Router();
 
-listRoutes.get("/getAllListings",GetAllListings)
+listRoutes.get("/getAllListings", GetAllListings);
 
-
-export default listRoutes
+export default listRoutes;

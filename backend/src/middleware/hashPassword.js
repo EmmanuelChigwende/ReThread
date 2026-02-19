@@ -1,7 +1,7 @@
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 
 async function EncryptPassword(passwordString) {
-  const hashedPassword = await bcrypt.hash(passwordString, 10)
+  const hashedPassword = await bcrypt.hash(passwordString, 10);
   return hashedPassword;
 }
 
