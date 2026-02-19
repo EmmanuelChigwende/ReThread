@@ -2,14 +2,14 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
+const secret = process.env.JWTSECRET;
 
-async function CheckToken(token) {
+function CheckToken(token) {
   if (!token) {
-    return res.status(400).json({ message: "no token found" });
-  } else {
-    const secret = process.env.JWTSECRET;
-    console.log(jwt.verify(token, secret));
+    console.log("token not found or is invalid");
   }
+  const confirmation = jwt.verify(token, secret);
+  return confirmation;
 }
 
 export default CheckToken;
