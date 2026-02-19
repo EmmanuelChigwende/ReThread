@@ -29,4 +29,4 @@ async function CreateListing(req,res){
     }
 }
 
-export {GetAllListings}
+export {GetAllListings,CreateListing}
