@@ -1,7 +1,6 @@
-import multer from 'multer'
+import multer from "multer";
 
+const storage = multer.memoryStorage();
+const image = multer({ storage });
 
-const storage = multer.memoryStorage()
-const image = multer({storage})
-
-export default image
+export default image;
