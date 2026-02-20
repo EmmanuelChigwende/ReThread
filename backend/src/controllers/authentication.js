@@ -18,7 +18,7 @@ async function LoginUser(req, res) {
             return res.status(400).json({ message: "please input a password" });
           } else {
             if (CheckHash(password, userDetails.password)) {
-              const token = await GenerateToken(userDetails);
+              const token = await GenerateToken(userDetails._id);
               return res
                 .status(200)
                 .json({

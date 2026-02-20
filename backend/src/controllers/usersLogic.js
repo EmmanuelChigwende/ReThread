@@ -4,14 +4,15 @@ import EncryptPassword from "../middleware/hashPassword.js";
 async function CreateUser(req, res) {
   try {
     const userDetails = req.body;
-    const password = req.body.password;
-    const hashed = await EncryptPassword(password);
-    console.log(hashed);
-    const AlreadyExists = await UserModel.findOne({ name: UserModel.name });
 
-    await UserModel.create({ ...userDetails, password: hashed });
-
-    return res.status(200).json({ message: "User created succesfully" });
+    if (!userDetails) {
+      return res.status(400).json({ message: "invalid user details" });
+    } else {
+      const password = req.body.password;
+      const hashed = await EncryptPassword(password);
+      await UserModel.create({ ...userDetails, password: hashed });
+      return res.status(200).json({ message: "User created succesfully" });
+    }
   } catch (err) {
     console.log("failed to create user", err);
   }
