@@ -9,15 +9,15 @@ Phase 1: Backend & Auth Cleanup
 
  JWT: check your token generation works and matches secret : ✅
 
- JWT verification middleware: ensure you can attach req.user for protected routes
+ JWT verification middleware: ensure you can attach req.user for protected routes : ✅
 
 🛠 Next Tasks
 
-Finish JWT middleware to verify tokens and extract user ID
+Finish JWT middleware to verify tokens and extract user ID :✅
 
-Update protected routes to use JWT (e.g., CreateListing)
+Update protected routes to use JWT (e.g., CreateListing) : ✅
 
-Fix user deletion route to ensure only admin or owner can delete
+Fix user deletion route to ensure only admin or owner can delete : ✅
 
 Centralize error handling for all user routes
 
