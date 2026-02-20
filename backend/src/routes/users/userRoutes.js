@@ -9,7 +9,7 @@ import CheckToken from "../../middleware/jwtTokenCheck.js";
 
 const useRoutes = express.Router();
 
-useRoutes.get("/getAllUsers", CheckToken, GetAllUsers);
+useRoutes.get("/getAllUsers",CheckToken,GetAllUsers);
 useRoutes.put("/createUser", CheckToken, CreateUser);
 useRoutes.delete("/deleteUserById/:id", CheckToken, DeleteUserById);
 useRoutes.delete("/deleteAllUsers", CheckToken, DeleteAllUsers);

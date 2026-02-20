@@ -4,12 +4,18 @@ import dotenv from "dotenv";
 dotenv.config();
 const secret = process.env.JWTSECRET;
 
-function CheckToken(token) {
+function CheckToken(req, res, next) {
+  const token = req.userDetails.id;
+
   if (!token) {
-    console.log("token not found or is invalid");
+    console.log("no token found.");
+  } else {
+    if (!jwt.verify(token, secret)) {
+      console.log("invalid token");
+    } else {
+      next();
+    }
   }
-  const confirmation = jwt.verify(token, secret);
-  return confirmation;
 }
 
 export default CheckToken;
