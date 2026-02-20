@@ -7,7 +7,7 @@ function TestPasswordStrenght(password) {
   const error = [];
 
   if (password.length < 8) {
-    error.push("password does not meet length requirement");
+    error.push("password does not meet length requirement must be 8 or more charachter");
   }
 
   if (!hasUpper.test(password)) {

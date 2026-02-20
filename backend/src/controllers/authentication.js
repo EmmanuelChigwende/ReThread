@@ -51,7 +51,7 @@ async function SignupUser(req, res) {
     const password = req.body.password;
 
     if (!userEmail || !password || !name) {
-      return req
+      return res
         .status(400)
         .json({ message: "please input email ,password and name" });
     } else {
