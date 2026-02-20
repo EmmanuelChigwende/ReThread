@@ -1,27 +1,36 @@
-const hasUpper = /[A-Z]/
-const hasLower = /[a-z]/
-const hasNumber = /[0-9]/
-const hasSpecial = /[!@#$%^&*()_+]/
+const hasUpper = /[A-Z]/;
+const hasLower = /[a-z]/;
+const hasNumber = /[0-9]/;
+const hasSpecial = /[!@#$%^&*()_+]/;
 
-function TestPasswordStrenght(password){
-    if(password.lenght >= 8){
-        return "password does not meet lenght requirement"
-    }
-    else if(!hasUpper.test(password)){
-        return "password should have atleast one uppercase character"
-    }
-    else if(!hasLower.test(password)){
-        return "password should have at least one lowercase chacter"
-    }
-    else if(!hasNumber.test(password)){
-        return "password should have at least one number"
-    }
-    else if(!hasSpecial.test(password)){
-        return "password should have atleast one special character"
-    }
-    else{
-        return password
-    }
+function TestPasswordStrenght(password) {
+  const error = [];
+
+  if (password.length < 8) {
+    error.push("password does not meet length requirement");
+  }
+
+  if (!hasUpper.test(password)) {
+    error.push("password should have at least one uppercase character");
+  }
+
+  if (!hasLower.test(password)) {
+    error.push("password should have at least one lowercase character");
+  }
+
+  if (!hasNumber.test(password)) {
+    error.push("password should have at least one number");
+  }
+
+  if (!hasSpecial.test(password)) {
+    error.push("password should have at least one special character");
+  }
+
+  if (error.length === 0) {
+    return true;
+  } else {
+    return error;
+  }
 }
 
-export default(TestPasswordStrenght)
+export default TestPasswordStrenght;
