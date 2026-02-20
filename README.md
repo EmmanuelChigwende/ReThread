@@ -1,13 +1,13 @@
 Phase 1: Backend & Auth Cleanup
 ✅ Check Existing Code
 
- User signup route: make sure it handles duplicates and required fields
+ User signup route: make sure it handles duplicates and required fields : ✅
 
- Login route: make sure it validates email/password correctly
+ Login route: make sure it validates email/password correctly : ✅
 
- Password hashing: confirm bcrypt hashing and comparison works
+ Password hashing: confirm bcrypt hashing and comparison works : ✅
 
- JWT: check your token generation works and matches secret
+ JWT: check your token generation works and matches secret : ✅
 
  JWT verification middleware: ensure you can attach req.user for protected routes
 
