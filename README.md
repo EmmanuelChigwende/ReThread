@@ -19,13 +19,13 @@ Update protected routes to use JWT (e.g., CreateListing) : ✅
 
 Fix user deletion route to ensure only admin or owner can delete : ✅
 
-Centralize error handling for all user routes
+Centralize error handling for all user routes ✅
 
 💾 Checkpoint for GitHub
 
-Commit: backend/auth-complete
+Commit: backend/auth-complete ✅
 
-Includes: signup, login, password hashing, JWT middleware, error handling
+Includes: signup, login, password hashing, JWT middleware, error handling✅
 
 Phase 2: Listings
 ✅ Check Existing Code
