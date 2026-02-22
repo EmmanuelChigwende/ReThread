@@ -3,6 +3,7 @@ import CheckHash from "../middleware/comparepasswordHash.js";
 import EncryptPassword from "../middleware/hashPassword.js";
 import GenerateToken from "../utils/jwtTokenCreation.js";
 import TestPasswordStrenght from "../middleware/CheckPasswordStrenght.js";
+import TestEmail from "../middleware/CheckEmailFormat.js";
 
 async function LoginUser(req, res) {
   try {
@@ -55,32 +56,40 @@ async function SignupUser(req, res) {
         .status(400)
         .json({ message: "please input email ,password and name" });
     } else {
-      const Exists = await UserModel.findOne({ email: userEmail });
+      try {
+        const CheckEmail = TestEmail(userEmail);
+        if (CheckEmail !== true) {
+          res.status(400).json({ message : CheckEmail });
+        } else {
+          const Exists = await UserModel.findOne({ email: userEmail });
 
-      if (Exists) {
-        return res.status(400).json({ message: "user already exists" });
-      } else {
-        try {
-          const CheckPasswordStrenght = TestPasswordStrenght(password);
-
-          if (CheckPasswordStrenght !== true) {
-            return res.status(400).json({ CheckPasswordStrenght});
+          if (Exists) {
+            return res.status(400).json({ message: "user already exists" });
           } else {
-            const hashedPassword = await EncryptPassword(password);
-            console.log(hashedPassword);
+            try {
+              const CheckPasswordStrenght = TestPasswordStrenght(password);
 
-            await UserModel.create({
-              name: name,
-              email: userEmail,
-              password: hashedPassword,
-            });
-            return res
-              .status(200)
-              .json({ message: "user created successfully" });
+              if (CheckPasswordStrenght !== true) {
+                return res.status(400).json({ message : CheckPasswordStrenght });
+              } else {
+                const hashedPassword = await EncryptPassword(password);
+
+                await UserModel.create({
+                  name: name,
+                  email: userEmail,
+                  password: hashedPassword,
+                });
+                return res
+                  .status(200)
+                  .json({ message: "user created successfully" });
+              }
+            } catch (err) {
+              return console.log("failed to strenght check password", err);
+            }
           }
-        } catch (err) {
-          return console.log("failed to strenght check password",err)
         }
+      } catch (err) {
+        console.log("failed validate email", err);
       }
     }
   } catch (err) {
