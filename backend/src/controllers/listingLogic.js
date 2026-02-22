@@ -27,7 +27,7 @@ async function DeleteListingByID(req, res) {
   try {
     const listingId = req.params.id;
     if (await ListingModel.findById(listingId)) {
-      await ListingModel.deleteOne({ id: listingId });
+      await ListingModel.deleteOne({ _id: listingId });
       return res.status(200).json({ message: "listing successfully deleted" });
     } else {
       res.status(404).json({ message: `listing id ${listingId} not found` });
@@ -37,4 +37,20 @@ async function DeleteListingByID(req, res) {
   }
 }
 
-export { GetAllListings, CreateListing ,DeleteListingByID};
+async function DeleteAllListings(req,res) {
+  try{
+    const Listings = await ListingModel.deleteMany()
+
+    if(Listings.deletedCount === 0){
+      return res.status(200).json({message:"no action taken: There are no listings yet"})
+    }
+    else{
+      return res.status(200).json({message:"successfully deleted all listings"})
+    }
+  }
+  catch(err){
+    console.log("failed to delete listings",err)
+  }
+}
+
+export { GetAllListings, CreateListing ,DeleteListingByID,DeleteAllListings};
