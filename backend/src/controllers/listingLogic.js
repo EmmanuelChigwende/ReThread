@@ -5,41 +5,36 @@ import image from "../middleware/multer.js";
 async function GetAllListings(req, res) {
   try {
     const listings = await ListingModel.find();
-    return res
-      .status(200)
-      .json({ message: "listings successfully fetched", data: listings });
+    if (listings.lenght === 0) {
+      return res
+        .status(200)
+        .json({ message: "there are no listings as of yet", data: listings });
+    } else {
+      return res
+        .status(200)
+        .json({ message: "successfully fetched listing data", data: listings });
+    }
   } catch (err) {
     console.log("failed to get listings", err);
   }
 }
 
 async function CreateListing(req, res) {
+  return res.json("still building endpoint");
+}
+
+async function DeleteListingByID(req, res) {
   try {
-    const newListing = req.body;
-    const listingOwner = req.body.id;
-    const listingImages = req.body.images;
-
-    if (!newListing) {
-      return res.status(400).json({ message: "no listing was provided" });
+    const listingId = req.params.id;
+    if (await ListingModel.findById(listingId)) {
+      await ListingModel.deleteOne({ id: listingId });
+      return res.status(200).json({ message: "listing successfully deleted" });
     } else {
-      // storing image in a memory buffer
-      try {
-        const imageBuffer = await image(listingImages);
-        const imageUrl = await HandleImages(imageBuffer);
-
-        await ListingModel({
-          ...newListing,
-          owner: listingOwner,
-          images: imageUrl,
-        });
-      } catch (err) {
-        console.log("failed to buffer image", err);
-      }
+      res.status(404).json({ message: `listing id ${listingId} not found` });
     }
-    return res.status(200).json({ message: "listing created successfully" });
   } catch (err) {
-    console.log("failed to create listing", err);
+    console.log("failed to delete  listing", err);
   }
 }
 
-export { GetAllListings, CreateListing };
+export { GetAllListings, CreateListing ,DeleteListingByID};
