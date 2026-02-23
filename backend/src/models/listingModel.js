@@ -54,7 +54,7 @@ const ListingSchema = new mongoose.Schema(
     },
 
     images: {
-      type: [String],
+      type: String,
     },
 
     owner: {
