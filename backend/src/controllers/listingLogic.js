@@ -1,9 +1,13 @@
 import ListingModel from "../models/listingModel.js";
 import HandleImages from "../services/imageHandling.js";
-
+import DecodeToken from "../utils/jwtDecodeToken.js";
 
 async function GetAllListings(req, res) {
   try {
+    const ownerId = req.headers.authorization;
+    const decodedToken = DecodeToken(ownerId);
+    console.log(decodedToken);
+
     const listings = await ListingModel.find();
     if (listings.lenght === 0) {
       return res
@@ -28,11 +32,10 @@ async function CreateListing(req, res) {
         .status(400)
         .json({ message: "please insert one or more images of the listing" });
     } else {
-      const imagesUrl = await HandleImages(ListingData.images)
+      const imagesUrl = await HandleImages(ListingData.images);
 
-      await ListingModel.create({...ListingData,images:imagesUrl})
-      return res.status(201).json({message:"listing created successfully"})
-
+      await ListingModel.create({ ...ListingData, images: imagesUrl });
+      return res.status(201).json({ message: "listing created successfully" });
     }
   } catch (err) {
     console.log("failed to create listing", err);
