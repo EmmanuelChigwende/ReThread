@@ -4,11 +4,10 @@ import DecodeToken from "../utils/jwtDecodeToken.js";
 
 async function GetAllListings(req, res) {
   try {
-    const ownerId = req.headers.authorization;
-    const decodedToken = DecodeToken(ownerId);
-    console.log(decodedToken);
+    const auhtHeader = req.headers.authorization;
+    const decoded = DecodeToken(auhtHeader)
 
-    const listings = await ListingModel.find();
+    const listings = await ListingModel.find({owner:decoded.id});
     if (listings.lenght === 0) {
       return res
         .status(200)
