@@ -47,53 +47,39 @@ async function LoginUser(req, res) {
 
 async function SignupUser(req, res) {
   try {
-    const name = req.body.name;
-    const userEmail = req.body.email;
-    const password = req.body.password;
+    const userDetails = req.body;
 
-    if (!userEmail || !password || !name) {
+    if (!userDetails.name || !userDetails.email || !userDetails.password) {
       return res
-        .status(400)
-        .json({ message: "please input email ,password and name" });
-    } else {
-      try {
-        const CheckEmail = TestEmail(userEmail);
-        if (CheckEmail !== true) {
-          res.status(400).json({ message : CheckEmail });
-        } else {
-          const Exists = await UserModel.findOne({ email: userEmail });
-
-          if (Exists) {
-            return res.status(400).json({ message: "user already exists" });
-          } else {
-            try {
-              const CheckPasswordStrenght = TestPasswordStrenght(password);
-
-              if (CheckPasswordStrenght !== true) {
-                return res.status(400).json({ message : CheckPasswordStrenght });
-              } else {
-                const hashedPassword = await EncryptPassword(password);
-
-                await UserModel.create({
-                  name: name,
-                  email: userEmail,
-                  password: hashedPassword,
-                });
-                return res
-                  .status(200)
-                  .json({ message: "user created successfully" });
-              }
-            } catch (err) {
-              return console.log("failed to strenght check password", err);
-            }
-          }
-        }
-      } catch (err) {
-        console.log("failed validate email", err);
-      }
+        .status(401)
+        .json({ message: "please enter all  provided fields" });
     }
+
+    const checkemail = TestEmail(userDetails.email);
+    if (checkemail !== true) {
+      return res
+        .status(401)
+        .json({ message: "invalid email format", error: checkemail });
+    }
+
+    const checkpassword =  TestPasswordStrenght(userDetails.password)
+    if(checkpassword !== true){
+      return res.status(401).json({message:"password does not meet strenght requirements",error:checkpassword})
+    }
+
+    const DoesUserExist = UserModel.find({email:userDetails.email})
+    if(DoesUserExist){
+      return res.status(401).json({message:"user with this email already exists"})
+    }
+
+    if(checkpassword === true){
+      const HashedPassword = await EncryptPassword(userDetails.password)
+      await UserModel.create({...userDetails,password:HashedPassword})
+      return res.status(201).json({message:"user successfully signed up..."})
+    }
+
   } catch (err) {
-    console.log("failed to signup user", err);
+    console.log("failed to create user");
   }
 }
 

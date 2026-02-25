@@ -8,7 +8,7 @@ function  TestEmail(email){
         error.push("wrong email format please check format")
     }
 
-    if(error.lenght === 0){
+    if(error.length === 0){
         return true
     }
     else{
