@@ -22,7 +22,7 @@ async function LoginUser(req, res) {
       return res.status(401).json({message:"invalid email or password"})
     }
 
-    const accessToken = await GenerateToken(userDetails)
+    const accessToken = await GenerateToken([DoesUserExist._id,DoesUserExist.email])
 
     if(accessToken){
       return res.status(200).json({message:"successfully logged in..",token:accessToken})

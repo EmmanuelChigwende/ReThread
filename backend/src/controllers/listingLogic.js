@@ -4,19 +4,16 @@ import DecodeToken from "../utils/jwtDecodeToken.js";
 
 async function GetAllListings(req, res) {
   try {
-    const auhtHeader = req.headers.authorization;
-    const decoded = DecodeToken(auhtHeader)
-
-    const listings = await ListingModel.find({owner:decoded.id});
-    if (listings.lenght === 0) {
-      return res
-        .status(200)
-        .json({ message: "there are no listings as of yet", data: listings });
-    } else {
-      return res
-        .status(200)
-        .json({ message: "successfully fetched listing data", data: listings });
+    const AuthHead = req.headers.authorization
+    if(AuthHead.lenght === 0){
+      return res. status(401).json({message:"no auth header found"})
     }
+
+    const decodedTkn =  DecodeToken(AuthHead)
+    console.log(decodedTkn)
+
+
+    console.log(AuthHead)
   } catch (err) {
     console.log("failed to get listings", err);
   }
