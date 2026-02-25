@@ -67,7 +67,7 @@ async function SignupUser(req, res) {
       return res.status(401).json({message:"password does not meet strenght requirements",error:checkpassword})
     }
 
-    const DoesUserExist = UserModel.find({email:userDetails.email})
+    const DoesUserExist = await UserModel.findOne({email:userDetails.email})
     if(DoesUserExist){
       return res.status(401).json({message:"user with this email already exists"})
     }
