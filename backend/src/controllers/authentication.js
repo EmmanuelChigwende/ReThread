@@ -7,39 +7,27 @@ import TestEmail from "../middleware/CheckEmailFormat.js";
 
 async function LoginUser(req, res) {
   try {
-    const { email, password } = req.body;
-
-    if (!email) {
-      return res.status(400).json({ message: "please input an email address" });
-    } else {
-      const userDetails = await UserModel.findOne({ email: email });
-
-      if (userDetails.email) {
-        if (email === userDetails.email) {
-          if (!password) {
-            return res.status(400).json({ message: "please input a password" });
-          } else {
-            if (CheckHash(password, userDetails.password)) {
-              const token = await GenerateToken(userDetails._id);
-              return res.status(200).json({
-                message: `${userDetails.name} logged in successfully`,
-                token: token,
-              });
-            } else {
-              return res
-                .status(400)
-                .json({ message: "invalid email or password" });
-            }
-          }
-        } else {
-          return res
-            .status(400)
-            .json({ message: "invalid  email or password" });
-        }
-      } else {
-        return res.status(200).json({ message: "user does not exist" });
-      }
+    const userDetails =  req.body
+    if(!userDetails.email || !userDetails.password){
+      return res.status(401).json({message:"please fill in all the provided fields"})
     }
+
+    const DoesUserExist =  await UserModel.findOne({email:userDetails.email})
+    if(!DoesUserExist){
+      return res.status(401).json({message:"User does not exist"})
+    }
+
+    const DoesPasswordMatch = await CheckHash(userDetails.password,DoesUserExist.password)
+    if(!DoesPasswordMatch){
+      return res.status(401).json({message:"invalid email or password"})
+    }
+
+    const accessToken = await GenerateToken(userDetails)
+
+    if(accessToken){
+      return res.status(200).json({message:"successfully logged in..",token:accessToken})
+    }
+
   } catch (err) {
     console.log("failed to log user in");
   }
