@@ -1,5 +1,6 @@
 import express, { json } from "express";
 import dotevn from "dotenv";
+import cors from 'cors'
 
 // database connection
 import DatabaseCon from "./config/databaseConnnect.js";
@@ -14,6 +15,7 @@ dotevn.config();
 const server = express();
 const port = process.env.PORT || 4000;
 
+server.use(cors({origin:"http://localhost:5173"}))
 server.use(json());
 server.use("/api", listRoutes);
 server.use("/api", useRoutes);

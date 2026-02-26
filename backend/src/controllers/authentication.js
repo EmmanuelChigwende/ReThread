@@ -37,7 +37,7 @@ async function SignupUser(req, res) {
   try {
     const userDetails = req.body;
 
-    if (!userDetails.name || !userDetails.email || !userDetails.password) {
+    if ( !userDetails.email || !userDetails.password) {
       return res
         .status(401)
         .json({ message: "please enter all  provided fields" });

@@ -11,7 +11,11 @@ export default {
         // for text
         textPrimary:"#007FFF",
         textSecondary:"#6F68CA",
-        textDefault: "#FFFFFF"
+        textDefault: "#FFFFFF",
+
+        // for links
+        links:"#007FFF"
+
       },
       fontFamily:{
         sans:["Inter", "sans-serif"],
