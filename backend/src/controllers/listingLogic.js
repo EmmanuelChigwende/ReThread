@@ -10,10 +10,12 @@ async function GetAllListings(req, res) {
     }
 
     const decodedTkn =  DecodeToken(AuthHead)
-    console.log(decodedTkn)
-
-
-    console.log(AuthHead)
+    const OwnerID = decodedTkn.id.userID
+    if(decodedTkn){
+      const Listings = await ListingModel.find({owner:OwnerID})
+      return res.status(200).json({message:"successfully fetched listings",data:Listings})
+    }
+    
   } catch (err) {
     console.log("failed to get listings", err);
   }
@@ -21,18 +23,26 @@ async function GetAllListings(req, res) {
 
 async function CreateListing(req, res) {
   try {
-    const ListingData = req.body;
+   const AuthHead = req.headers.authorization
+   if(AuthHead.length === 0){
+    return res.status(401).json({message:"no auth header found"})
+   }
 
-    if (!ListingData.images) {
-      return res
-        .status(400)
-        .json({ message: "please insert one or more images of the listing" });
-    } else {
-      const imagesUrl = await HandleImages(ListingData.images);
+   const ownerId = DecodeToken(AuthHead)
+   if(!ownerId){
+    return res.status(401).json({message:"no user information found"})
+   }
 
-      await ListingModel.create({ ...ListingData, images: imagesUrl });
-      return res.status(201).json({ message: "listing created successfully" });
-    }
+   const listingDetails = req.body
+   if(listingDetails.length === 0){
+    return res.status(401).json({message:"please fill in all fields"})
+   }
+   else{
+    await ListingModel.create({...listingDetails,owner:ownerId.userID})
+    return res.status(201).json({message:"successfully created listing"})
+   }
+
+
   } catch (err) {
     console.log("failed to create listing", err);
   }

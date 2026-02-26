@@ -59,7 +59,7 @@ const ListingSchema = new mongoose.Schema(
 
     owner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "userSchema",
+      ref: "UserSchema",
     },
   },
   { timestamps: true },
