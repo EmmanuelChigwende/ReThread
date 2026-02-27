@@ -1,22 +1,14 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { Children } from 'react'
+import { Navigate, Outlet } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
-const ProtectedRoutes = () => {
+const ProtectedRoutes = ({children}) => {
     const token = localStorage.getItem("token")
-    const navigate = useNavigate()
-    if(token){
-        navigate()
+    if(!token){
+        toast.error("how about you signin first okay")
+        return <Navigate to='/'/>
     }
-    else{
-        navigate("/")
-        toast.error("How about we log in first okay")
-    }
-  return (
-    <div>
-      
-    </div>
-  )
+  return <Outlet/>
 }
 
 export default ProtectedRoutes
