@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 const Signup = () => {
   const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   function HandleUserInput(e) {
     setUserDetails({
@@ -18,18 +18,58 @@ const Signup = () => {
   }
 
   function CreateUserAccount() {
-    setLoading(true)
-      axios.post('http://localhost:5000/api/signUp',userDetails)
-      .then(
-        (res) => {
-          toast.success(res.data)
-        }
-      ).catch((err)=>{
-        toast.error(err.message || "something went wrong")
+    setLoading(true);
+
+    const EmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!EmailRegex.test(userDetails.email)) {
+      setLoading(false);
+      return toast.error("invalid email format");
+    }
+
+    const passwordRegex = {
+      hasupper: /A-Z/,
+      haslower: /a-z/,
+      hasnumber: /0-9/,
+      hasspecial: /!@#$%^&*()_+=/,
+    };
+    if (userDetails.password.length <= 8) {
+      setLoading(false);
+      return toast.error("password must be more than 8 characters");
+    }
+
+    if (!passwordRegex.haslower.test(userDetails.password)) {
+      setLoading(false);
+      return toast.error("password should include lowercase characters");
+    }
+
+    if (!passwordRegex.hasnumber.text(userDetails.password)) {
+      setLoading(false);
+      return toast.error("password should include atleast one number");
+    }
+
+    if (!passwordRegex.hasspecial.test(userDetails.password)) {
+      setLoading(false);
+      return toast.error(
+        "password should include alteast one special character",
+      );
+    }
+
+    if (!passwordRegex.hasupper.test(userDetails.password)) {
+      setLoading(false);
+      return toast.error(
+        "password should inlcude atleast one Uppercase character",
+      );
+    }
+
+    axios
+      .post("http://localhost:5000/api/signUp", userDetails)
+      .then((res) => {
+        toast.success(res.data);
       })
-      .finally(
-        setLoading(false)
-      )
+      .catch((err) => {
+        toast.error(err.message || "something went wrong");
+      })
+      .finally(setLoading(false));
   }
 
   return (
@@ -68,11 +108,9 @@ const Signup = () => {
           <div>
             <button
               className="w-full h-[50px] bg-primary rounded-[15px] text-bold text-textDefault  mt-[10px]"
-              onClick={(e)=>CreateUserAccount()}
+              onClick={(e) => CreateUserAccount()}
             >
-              {
-                loading ? "Siging Up..." : "SignUp"
-              }
+              {loading ? "Siging Up..." : "SignUp"}
             </button>
           </div>
           <div className="text-[0.8rem] text-center">
