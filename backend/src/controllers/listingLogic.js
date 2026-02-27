@@ -2,7 +2,7 @@ import ListingModel from "../models/listingModel.js";
 import HandleImages from "../services/imageHandling.js";
 import DecodeToken from "../utils/jwtDecodeToken.js";
 
-async function GetAllListings(req, res) {
+async function GetAllMyListings(req, res) {
   try {
     const AuthHead = req.headers.authorization
     if(AuthHead.lenght === 0){
@@ -17,6 +17,19 @@ async function GetAllListings(req, res) {
     }
     
   } catch (err) {
+    console.log("failed to get listings", err);
+  }
+}
+
+async function GetAllListings(req, res) {
+  try{
+     const listing = await ListingModel.find()
+     return res.status(200).json({
+      message:"listing successfully fetched",
+      data:listing
+     })
+  }
+  catch (err) {
     console.log("failed to get listings", err);
   }
 }
@@ -80,4 +93,4 @@ async function DeleteAllListings(req, res) {
   }
 }
 
-export { GetAllListings, CreateListing, DeleteListingByID, DeleteAllListings };
+export { GetAllListings,GetAllMyListings, CreateListing, DeleteListingByID, DeleteAllListings };
