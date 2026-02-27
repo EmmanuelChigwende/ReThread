@@ -9,6 +9,7 @@ const App = () => {
   return (
     <div className='h-[100vh] w-[100vw] p-2 bg-background font-sans'>
       <Routes>
+        <Route path='/' element={<Signup/>} replace />
         <Route path='/Signup' element={<Signup/>} />
         <Route path='/Signin' element={<Signin/>} />
 

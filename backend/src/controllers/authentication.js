@@ -10,13 +10,13 @@ async function LoginUser(req, res) {
     const userDetails = req.body;
     if (!userDetails.email || !userDetails.password) {
       return res
-        .status(401)
+        .status(400)
         .json({ message: "please fill in all the provided fields" });
     }
 
     const DoesUserExist = await UserModel.findOne({ email: userDetails.email });
     if (!DoesUserExist) {
-      return res.status(401).json({ message: "User does not exist" });
+      return res.status(400).json({ message: "User does not exist" });
     }
 
     const DoesPasswordMatch = await CheckHash(
@@ -24,7 +24,7 @@ async function LoginUser(req, res) {
       DoesUserExist.password,
     );
     if (!DoesPasswordMatch) {
-      return res.status(401).json({ message: "invalid email or password" });
+      return res.status(400).json({ message: "invalid email or password" });
     }
 
     const accessToken = await GenerateToken({
@@ -45,7 +45,6 @@ async function LoginUser(req, res) {
 async function SignupUser(req, res) {
   try {
     const userDetails = req.body;
-    console.log(userDetails)
 
     if (!userDetails.email || !userDetails.password) {
       return res
@@ -62,12 +61,10 @@ async function SignupUser(req, res) {
 
     const checkpassword = TestPasswordStrenght(userDetails.password);
     if (checkpassword !== true) {
-      return res
-        .status(400)
-        .json({
-          message: "password does not meet strenght requirements",
-          error: checkpassword,
-        });
+      return res.status(400).json({
+        message: "password does not meet strenght requirements",
+        error: checkpassword,
+      });
     }
 
     const DoesUserExist = await UserModel.findOne({ email: userDetails.email });

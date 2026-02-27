@@ -64,7 +64,6 @@ const Signup = () => {
     axios
       .post("http://localhost:5000/api/SignUP", userDetails)
       .then((res) => {
-        console.log(res.data)
         toast.success(res.data.message)
         navigate("/Signin")
       })
@@ -89,7 +88,7 @@ const Signup = () => {
           Create Account
         </h1>
         <div className="grid gap-2  mb-[10px] text-[1.2rem]">
-          <p className="grid gap-2">
+          <div className="grid gap-2">
             <label htmlFor="">Email</label>
             <input
               className="text-[1rem] h-[2rem] truncate outline outline-2 outline-secondary rounded-[5px] pl-2"
@@ -99,8 +98,8 @@ const Signup = () => {
               onChange={HandleUserInput}
               required
             />
-          </p>
-          <p className="grid gap-2">
+          </div>
+          <div className="grid gap-2">
             <label htmlFor="">Password</label>
             <input
               className="text-[1rem] h-[2rem] outline outline-2 outline-secondary rounded-[5px] pl-2"
@@ -110,14 +109,14 @@ const Signup = () => {
               onChange={HandleUserInput}
               required
             />
-          </p>
+          </div>
 
           <div>
             <button
               className="w-full h-[50px] bg-primary rounded-[15px] text-bold text-textDefault  mt-[10px]"
               onClick={(e) => CreateUserAccount()}
             >
-              {loading ? "Siging Up..." : "SignUp"}
+              {loading ? "Loading..." : "SignUp"}
             </button>
           </div>
           <div className="text-[0.8rem] text-center">
