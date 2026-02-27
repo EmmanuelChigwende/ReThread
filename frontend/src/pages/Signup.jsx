@@ -27,10 +27,10 @@ const Signup = () => {
     }
 
     const passwordRegex = {
-      hasupper: /A-Z/,
-      haslower: /a-z/,
-      hasnumber: /0-9/,
-      hasspecial: /!@#$%^&*()_+=/,
+      hasupper: /[A-Z]/,
+      haslower: /[a-z]/,
+      hasnumber: /[0-9]/,
+      hasspecial: /[!@#$%^&*()_+=]/,
     };
     if (userDetails.password.length <= 8) {
       setLoading(false);
@@ -42,7 +42,7 @@ const Signup = () => {
       return toast.error("password should include lowercase characters");
     }
 
-    if (!passwordRegex.hasnumber.text(userDetails.password)) {
+    if (!passwordRegex.hasnumber.test(userDetails.password)) {
       setLoading(false);
       return toast.error("password should include atleast one number");
     }
@@ -62,14 +62,21 @@ const Signup = () => {
     }
 
     axios
-      .post("http://localhost:5000/api/signUp", userDetails)
+      .post("http://localhost:5000/api/SignUP", userDetails)
       .then((res) => {
-        toast.success(res.data);
+        console.log(res.data)
+        toast.success(res.data.message)
+        navigate("/Signin")
       })
       .catch((err) => {
-        toast.error(err.message || "something went wrong");
+        if(err.status === 409){
+          toast.error("user with this email already exists" || "something went wrong");
+        }
+        else{
+          toast.error(err.message,"something went wrong")
+        }
       })
-      .finally(setLoading(false));
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -85,7 +92,7 @@ const Signup = () => {
           <p className="grid gap-2">
             <label htmlFor="">Email</label>
             <input
-              className="outline outline-2 outline-secondary rounded-[5px] pl-2"
+              className="text-[1rem] h-[2rem] truncate outline outline-2 outline-secondary rounded-[5px] pl-2"
               type="email"
               name="email"
               value={userDetails.email}
@@ -96,7 +103,7 @@ const Signup = () => {
           <p className="grid gap-2">
             <label htmlFor="">Password</label>
             <input
-              className="outline outline-2 outline-secondary rounded-[5px] pl-2"
+              className="text-[1rem] h-[2rem] outline outline-2 outline-secondary rounded-[5px] pl-2"
               type="password"
               name="password"
               value={userDetails.password}
