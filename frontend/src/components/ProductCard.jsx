@@ -2,9 +2,11 @@ import React from "react";
 
 const ProductCard = ({ listings }) => {
   return (
-    <div className="h-[200px] shadow-lg rounded-[10px] p-2">
-      <p className="h-[100px] rounded-[10px] bg-primary"></p>
-      <p className="text-[0.8rem]">{listings.title}</p>
+    <div className="h-[210px] shadow-lg rounded-[10px] p-2">
+      <p>
+        <img src={listings.images} alt="" className="aspect-square rounded-[10px]" />
+      </p>
+      <p className="text-[0.8rem] truncate">{listings.title}</p>
       <div className="flex justify-between">
         <p className="font-bold text-[1rem]">${listings.price}</p>
         <p className="text-[0.8rem]">{listings.condition}</p>

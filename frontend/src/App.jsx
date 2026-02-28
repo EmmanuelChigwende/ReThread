@@ -8,6 +8,10 @@ import Signin from "./pages/Signin";
 // protected routes
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Home from "./pages/protected/Home";
+import Messages from "./pages/protected/Messages";
+import Shop from './pages/protected/Shop'
+import Cart from "./pages/protected/Cart";
+import Profile from "./pages/protected/Profile";
 
 const App = () => {
   return (
@@ -20,6 +24,10 @@ const App = () => {
         {/* Protected Routes */}
         <Route element={<ProtectedRoutes/>}>
           <Route path="/Home" element={<Home/>}/>
+          <Route path="/Shop" element={<Shop/>}/>
+          <Route path="/Message" element={<Messages/>}/>
+          <Route path="/Cart" element={<Cart/>}/>
+          <Route path="/Profile" element={<Profile/>}/>
         </Route>
     </Routes>
     </div>

@@ -33,13 +33,19 @@ const Home = () => {
   return (
     <div className="w-full h-full">
       <Header />
-      <div className=" h-[80vh] grid grid-cols-2 gap-2 overflow-scroll p-2">
+      <div className="h-[80vh] overflow-scroll p-2">
         {loading ? (
-          <LoadingAnimation className="absolute" />
+          <div className="h-[80vh]">
+            <LoadingAnimation/>
+          </div>
         ) : (
-          listings?.map((listing) => (
+         <div className="grid grid-cols-2">
+           {
+            listings?.map((listing) => (
             <ProductCard key={listing._id} listings={listing} />
           ))
+           }
+         </div>
         )}
       </div>
       <NavigationFooter />

@@ -29,6 +29,7 @@ const Login = () => {
       .then((res) => {
         toast.success(res.data.message);
         localStorage.setItem("token", res.data.token);
+        console.log(localStorage.getItem("token"))
         navigate("/Home")
       })
       .catch((err) => {
