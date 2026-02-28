@@ -5,6 +5,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import LoadingAnimation from "../../animations/Loading";
 
+import ProductCard from "../../components/ProductCard";
+
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState(null);
@@ -31,27 +33,12 @@ const Home = () => {
   return (
     <div className="w-full h-full">
       <Header />
-      <div className="h-[80vh] grid grid-cols-2 gap-2 overflow-scroll">
+      <div className=" h-[80vh] grid grid-cols-2 gap-2 overflow-scroll p-2">
         {loading ? (
-          <LoadingAnimation />
+          <LoadingAnimation className="absolute" />
         ) : (
           listings?.map((listing) => (
-            <>
-              <div key={listing._id} className="mb-[10px shadow-md rounded-[10px]">
-                <div className="pl-1">
-                  <p>
-                    owner account
-                  </p>
-                </div>
-                <div className="grid">
-                  {/* image placeholder */}
-                  <div className="h-[100px] rounded-[15px] bg-primary"></div>
-                  <div className="p-2 text-[1rem]">
-                    <h1>{listing.title}</h1>
-                  </div>
-                </div>
-              </div>
-            </>
+            <ProductCard key={listing._id} listings={listing} />
           ))
         )}
       </div>
