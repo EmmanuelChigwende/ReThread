@@ -3,7 +3,7 @@ import {
   HomeIcon,
   ShoppingCartIcon,
   ShoppingBagIcon,
-  UserIcon,
+  MoreHorizontalIcon,
   MessageCircleIcon
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const NavigationFooter = () => {
   const navigate = useNavigate()
   return (
-    <div className="h-[10vh] flex gap-2 justify-between items-center p-2">
+    <div className="h-[10vh] flex gap-2 justify-evenly items-center p-2">
       <div onClick={()=>navigate("/Home")}  className="cursor-pointer flex flex-col items-center justify-center">
         <HomeIcon size={20} className="text-center" />
         <p className="text-[0.8rem]">Home</p>
@@ -29,8 +29,8 @@ const NavigationFooter = () => {
         <p className="text-[0.8rem]">Cart</p>
       </div>
       <div onClick={()=>navigate("/Profile")} className="flex flex-col items-center justify-center">
-        <UserIcon />
-        <p className="text-[0.8rem]">Profile</p>
+        <MoreHorizontalIcon />
+        <p className="text-[0.8rem]">More</p>
       </div>
     </div>
   );
