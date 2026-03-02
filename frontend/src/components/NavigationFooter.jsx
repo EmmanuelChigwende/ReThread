@@ -28,7 +28,7 @@ const NavigationFooter = () => {
         <ShoppingCartIcon />
         <p className="text-[0.8rem]">Cart</p>
       </div>
-      <div onClick={()=>navigate("/Profile")} className="flex flex-col items-center justify-center">
+      <div onClick={()=>navigate("/More")} className="flex flex-col items-center justify-center">
         <MoreHorizontalIcon />
         <p className="text-[0.8rem]">More</p>
       </div>

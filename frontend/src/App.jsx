@@ -11,7 +11,7 @@ import Home from "./pages/protected/Home";
 import Messages from "./pages/protected/Messages";
 import Shop from './pages/protected/Shop'
 import Cart from "./pages/protected/Cart";
-import Profile from "./pages/protected/Profile";
+import More from "./pages/protected/More";
 
 const App = () => {
   return (
@@ -27,7 +27,7 @@ const App = () => {
           <Route path="/Shop" element={<Shop/>}/>
           <Route path="/Message" element={<Messages/>}/>
           <Route path="/Cart" element={<Cart/>}/>
-          <Route path="/Profile" element={<Profile/>}/>
+          <Route path="/More" element={<More/>}/>
         </Route>
     </Routes>
     </div>

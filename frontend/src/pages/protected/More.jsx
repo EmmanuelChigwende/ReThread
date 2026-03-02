@@ -3,16 +3,16 @@ import Header from "../../components/Header";
 import NavigationFooter from "../../components/NavigationFooter";
 import LoadingAnimation from '../../animations/Loading';
 
-const Profile = () => {
+const More = () => {
   return (
     <div className='w-full h-full'>
       <Header/>
-      <div className='h-[80vh] overflow-scroll'>
-        <LoadingAnimation/>
+      <div>
+        
       </div>
       <NavigationFooter/>
     </div>
   )
 }
 
-export default Profile
+export default More
