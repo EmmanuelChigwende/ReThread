@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header";
 import NavigationFooter from "../../components/NavigationFooter";
 import LoadingAnimation from "../../animations/Loading";
@@ -11,8 +11,10 @@ import {
   LogOut,
   Info,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const More = () => {
+  const navigate = useNavigate()
   return (
     <div className="w-full h-full">
       <Header />
@@ -47,10 +49,10 @@ const More = () => {
               <ChevronRight />
             </div>
             <div className="grid gap-1 pl-12">
-              <div>
+              <div onClick={()=>navigate('/YourShop/MyListings')} >
                 <h2>My Listings</h2>
               </div>
-              <div>
+              <div onClick={()=>navigate("/YourShop/CreateListing")}>
                 <h2>Create listings</h2>
               </div>
               <div>
@@ -78,18 +80,12 @@ const More = () => {
             </div>
             <div className="grid gap-1 pl-12">
               <div>
-                <h2>
-                  About Rethread
-                </h2>
+                <h2>About Rethread</h2>
               </div>
               <div>
-                <h2>
-                  Terms and Conditions
-                </h2>
+                <h2>Terms and Conditions</h2>
               </div>
-              <div>
-                Rethread Developers
-              </div>
+              <div>Rethread Developers</div>
             </div>
           </div>
           <div className="flex justify-between p-1 mt-[20px]">

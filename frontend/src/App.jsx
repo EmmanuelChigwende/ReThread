@@ -13,6 +13,12 @@ import Shop from './pages/protected/Shop'
 import Cart from "./pages/protected/Cart";
 import More from "./pages/protected/More";
 
+// listing routes
+import MyListings from "./pages/protected/YourShop/MyListings";
+import CreateListing from './pages/protected/YourShop/CreateListing'
+import DeleteListings from './pages/protected/YourShop/DeleteListings'
+import UpdateListings from './pages/protected/YourShop/UpdateListings'
+
 const App = () => {
   return (
     <div className="h-[100vh] w-[100vw] p-2 bg-background font-sans">
@@ -28,6 +34,11 @@ const App = () => {
           <Route path="/Message" element={<Messages/>}/>
           <Route path="/Cart" element={<Cart/>}/>
           <Route path="/More" element={<More/>}/>
+
+          {/* Protected  lisitng Routes */}
+          <Route path="/YourShop/CreateListing" element={<CreateListing/>}/>
+          <Route path="/YourShop/UpdateListings" element={<UpdateListings/>} />
+          <Route path="/YourShop/Mylistings" element={<MyListings/>} />
         </Route>
     </Routes>
     </div>
