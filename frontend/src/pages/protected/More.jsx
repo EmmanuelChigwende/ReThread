@@ -12,6 +12,7 @@ import {
   Info,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const More = () => {
   const navigate = useNavigate()
@@ -89,7 +90,11 @@ const More = () => {
             </div>
           </div>
           <div className="flex justify-between p-1 mt-[20px]">
-            <h1 className="flex gap-2">
+            <h1 onClick={()=>{
+              localStorage.clear()
+              toast.success("Bye for now")
+              navigate("/")
+            }}  className="flex gap-2">
               <LogOut />
               Logout
             </h1>

@@ -21,7 +21,7 @@ import UpdateListings from './pages/protected/YourShop/UpdateListings'
 
 const App = () => {
   return (
-    <div className="h-[100vh] w-[100vw] p-2 bg-background font-sans">
+    <div className="h-screen w-full p-2 bg-background font-sans overflow-x-hidden">
       <Routes>
         <Route path="/" element={<Signup />} replace />
         <Route path="/Signup" element={<Signup />} />
@@ -39,6 +39,7 @@ const App = () => {
           <Route path="/YourShop/CreateListing" element={<CreateListing/>}/>
           <Route path="/YourShop/UpdateListings" element={<UpdateListings/>} />
           <Route path="/YourShop/Mylistings" element={<MyListings/>} />
+          <Route path="/YourShop/DeleteListings" element={<DeleteListings/>} />
         </Route>
     </Routes>
     </div>
