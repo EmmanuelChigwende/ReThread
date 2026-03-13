@@ -6,12 +6,27 @@ import { useState} from 'react'
 import LoadingAnimation from '../../../animations/Loading'
 import Header from '../../../components/Header'
 import NavigationFooter from '../../../components/NavigationFooter'
+import { Currency } from 'lucide-react'
 
 const CreateListing = () => {
+
+  const [listing,setListing] = useState({
+    title:"",
+    description:"",
+    price:"",
+    Currency:"",
+    category:"",
+    size:"",
+    condition:"",
+    status:"",
+    images:""
+
+  })
+
   return (
     <div className='h-[80vh]'>
       <Header/> 
-      <div className='h-[80vh] '>
+      <div className='h-[80vh]  w-full '>
         <h1 className='text-[1.2rem] font-bold pl-2 mb-[20px]'>
           Create New Lisitng
         </h1>
@@ -20,19 +35,19 @@ const CreateListing = () => {
             <label htmlFor="">
               Title
             </label>
-            <input type="text" className='outline outline-2 outline-secondary' />
+            <input required type="text" className='outline outline-2 outline-secondary' />
           </div>
           <div className='grid grid-cols-1'>
             <label htmlFor="">
               Description
             </label>
-            <input type="text" className='outline outline-2 outline-secondary' />
+            <input required type="text" className='outline outline-2 outline-secondary' />
           </div>
           <div className='grid grid-cols-1'>
             <label htmlFor="">
               Price
             </label>
-            <input type="text" className='outline outline-2 outline-secondary' />
+            <input required  type="text" className='outline outline-2 outline-secondary' />
           </div>
           <div className='flex gap-4 items-center'>
             <label htmlFor="">
@@ -76,7 +91,7 @@ const CreateListing = () => {
             </select>
           </div>
           <div>
-            <input type="file" accept='.png' />
+            <input required type="file" accept='.png,.jpg,.jpeg,.webp' />
           </div>
 
           <div>
