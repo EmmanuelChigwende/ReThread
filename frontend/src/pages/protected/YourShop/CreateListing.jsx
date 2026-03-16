@@ -6,6 +6,8 @@ import { useState } from "react";
 import LoadingAnimation from "../../../animations/Loading";
 import Header from "../../../components/Header";
 import NavigationFooter from "../../../components/NavigationFooter";
+import toast from "react-hot-toast";
+
 const CreateListing = () => {
   const [loading, setLoading] = useState(false);
   const [listing, setListing] = useState({
@@ -15,8 +17,7 @@ const CreateListing = () => {
     currency: "",
     category: "",
     size: "",
-    condition: "",
-    status: "",
+    condition: ""
   });
 
   function HandleListingDetails(e) {
@@ -33,10 +34,11 @@ const CreateListing = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
-        console.log(res.data);
+        toast.success(res.data.message)
       })
       .catch((err) => {
         console.log(err.message);
+        toast.error(err.message)
       });
   }
 
@@ -90,8 +92,8 @@ const CreateListing = () => {
               id=""
               className=" w-[220px] bg-secondary p-1 rounded-md text-textDefault"
             >
-              <option name="usd">Usd</option>
-              <option name="zig">Zig</option>
+              <option name="usd" value={"usd"} >Usd</option>
+              <option name="zig" value={"zig"} >Zig</option>
             </select>
           </div>
           <div className="flex gap-4 items-center">
@@ -147,7 +149,7 @@ const CreateListing = () => {
 
           <div>
             <button
-              onClick={(e) => HandleListingUpload}
+              onClick={(e) => HandleListingUpload()}
               className="font-bold bg-secondary w-full p-2 text-textDefault rounded-md"
             >
               {loading ? "Loading" : "Create"}

@@ -11,6 +11,7 @@ async function GetAllMyListings(req, res) {
 
     const decodedTkn =  DecodeToken(AuthHead)
     const OwnerID = decodedTkn.id.userID
+    console.log(OwnerID)
     if(decodedTkn){
       const Listings = await ListingModel.find({owner:OwnerID})
       return res.status(200).json({message:"successfully fetched listings",data:Listings})

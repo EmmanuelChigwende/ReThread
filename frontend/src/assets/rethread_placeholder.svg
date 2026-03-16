@@ -1,0 +1,16 @@
+<svg width="100%" viewBox="0 0 680 690" xmlns="http://www.w3.org/2000/svg">
+  <rect width="680" height="680" fill="#f0eeeb" rx="10" style="fill:rgb(240, 238, 235);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- hanger bar -->
+  <rect x="240" y="195" width="200" height="8" rx="4" fill="#d0ccc6" style="fill:rgb(208, 204, 198);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- hanger hook -->
+  <path d="M340 195 Q340 165 360 155 Q380 145 378 130 Q376 115 355 118" fill="none" stroke="#d0ccc6" stroke-width="6" stroke-linecap="round" style="fill:none;stroke:rgb(208, 204, 198);color:rgb(0, 0, 0);stroke-width:6px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- hanger left arm -->
+  <line x1="340" y1="200" x2="220" y2="330" stroke="#d0ccc6" stroke-width="6" stroke-linecap="round" style="fill:rgb(0, 0, 0);stroke:rgb(208, 204, 198);color:rgb(0, 0, 0);stroke-width:6px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- hanger right arm -->
+  <line x1="340" y1="200" x2="460" y2="330" stroke="#d0ccc6" stroke-width="6" stroke-linecap="round" style="fill:rgb(0, 0, 0);stroke:rgb(208, 204, 198);color:rgb(0, 0, 0);stroke-width:6px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- shirt body outline -->
+  <path d="M220,330 L200,390 L240,400 L240,520 L440,520 L440,400 L480,390 L460,330 Z" fill="none" stroke="#d0ccc6" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" style="fill:none;stroke:rgb(208, 204, 198);color:rgb(0, 0, 0);stroke-width:6px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <text x="340" y="590" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#b0aca6" font-weight="500" letter-spacing="2" style="fill:rgb(176, 172, 166);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:22px;font-weight:500;text-anchor:middle;dominant-baseline:auto">no image</text>
+</svg>

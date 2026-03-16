@@ -11,14 +11,13 @@ import { useNavigate } from "react-router-dom";
 const MyListings = () => {
   const [loading, setLoading] = useState(true);
   const [mylistings, setMyListings] = useState(null);
-  const token = localStorage.getItem("token");
   const navigate = useNavigate()
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/getAllMyListing", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
