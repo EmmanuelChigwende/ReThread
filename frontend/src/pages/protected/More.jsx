@@ -16,6 +16,8 @@ import toast from "react-hot-toast";
 
 const More = () => {
   const navigate = useNavigate()
+  const [isOpen,setOpen] = useState(false)
+
   return (
     <div className="w-full h-full">
       <Header />
@@ -29,7 +31,7 @@ const More = () => {
               </h1>
               <ChevronRight />
             </div>
-            <div className="grid gap-1 pl-12">
+            <div  className="hidden grid gap-1 pl-12">
               <div>
                 <h2>Profile</h2>
               </div>
@@ -56,7 +58,7 @@ const More = () => {
               <div onClick={()=>navigate("/YourShop/CreateListing")}>
                 <h2>Create listings</h2>
               </div>
-              <div>
+              <div onClick={()=>navigate("/YourShop/DeleteListings")}>
                 <h2>Delete listings</h2>
               </div>
               <div>
@@ -79,7 +81,7 @@ const More = () => {
               </h1>
               <ChevronRight />
             </div>
-            <div className="grid gap-1 pl-12">
+            <div className="hidden grid gap-1 pl-12">
               <div>
                 <h2>About Rethread</h2>
               </div>
@@ -98,7 +100,6 @@ const More = () => {
               <LogOut />
               Logout
             </h1>
-            <ChevronRight />
           </div>
         </div>
       </div>

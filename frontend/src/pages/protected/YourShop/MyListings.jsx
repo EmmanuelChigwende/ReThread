@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const MyListings = () => {
   const [loading, setLoading] = useState(true);
   const [mylistings, setMyListings] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -38,22 +38,25 @@ const MyListings = () => {
           <LoadingAnimation />
         </div>
       ) : (
-        <div className="h-[80vh] grid grid-2">
+        <div className="h-[80vh] overflow-scroll">
           {mylistings?.length === 0 ? (
             <div className="h-[80vh] flex items-center justify-center">
               <div>
-                <h1 className="text-[1.5rem] ">
-                No listings created
-              </h1>
-              <button onClick={()=>navigate("/YourShop/CreateListing")} className="text-center h-[40px] w-full bg-secondary text-textDefault rounded-[15px] shadow-lg">
-                Create New Listing
-              </button>
+                <h1 className="text-[1.5rem] ">No listings created</h1>
+                <button
+                  onClick={() => navigate("/YourShop/CreateListing")}
+                  className="text-center h-[40px] w-full bg-secondary text-textDefault rounded-[15px] shadow-lg"
+                >
+                  Create New Listing
+                </button>
               </div>
             </div>
           ) : (
-            mylistings?.map((listing) => (
-              <ProductCard key={listing._id} listings={listing} />
-            ))
+            <div className="grid grid-cols-2 p-2">
+              {mylistings?.map((listing) => (
+                <ProductCard key={listing._id} listings={listing} />
+              ))}
+            </div>
           )}
         </div>
       )}

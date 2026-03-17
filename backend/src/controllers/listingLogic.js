@@ -5,13 +5,12 @@ import DecodeToken from "../utils/jwtDecodeToken.js";
 async function GetAllMyListings(req, res) {
   try {
     const AuthHead = req.headers.authorization
-    if(AuthHead.lenght === 0){
+    if(AuthHead.length === 0){
       return res. status(401).json({message:"no auth header found"})
     }
 
     const decodedTkn =  DecodeToken(AuthHead)
     const OwnerID = decodedTkn.id.userID
-    console.log(OwnerID)
     if(decodedTkn){
       const Listings = await ListingModel.find({owner:OwnerID})
       return res.status(200).json({message:"successfully fetched listings",data:Listings})
@@ -52,7 +51,7 @@ async function CreateListing(req, res) {
     return res.status(401).json({message:"please fill in all fields"})
    }
    else{
-    await ListingModel.create({...listingDetails,owner:ownerId.userID})
+    await ListingModel.create({...listingDetails,owner:ownerId.id.userID})
     return res.status(201).json({message:"successfully created listing"})
    }
 

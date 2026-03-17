@@ -9,6 +9,7 @@ import NavigationFooter from "../../../components/NavigationFooter";
 import toast from "react-hot-toast";
 
 const CreateListing = () => {
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(false);
   const [listing, setListing] = useState({
     title: "",
@@ -34,12 +35,15 @@ const CreateListing = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
+        navigate("/YourShop/Mylistings")
         toast.success(res.data.message)
       })
       .catch((err) => {
         console.log(err.message);
         toast.error(err.message)
-      });
+      }).finally(
+        setLoading(false)
+      )
   }
 
   return (
@@ -92,8 +96,8 @@ const CreateListing = () => {
               id=""
               className=" w-[220px] bg-secondary p-1 rounded-md text-textDefault"
             >
-              <option name="usd" value={"usd"} >Usd</option>
-              <option name="zig" value={"zig"} >Zig</option>
+              <option  value={"usd"} >Usd</option>
+              <option  value={"zig"} >Zig</option>
             </select>
           </div>
           <div className="flex gap-4 items-center">
@@ -122,11 +126,11 @@ const CreateListing = () => {
               id=""
               className="w-[220px] bg-secondary text-textDefault rounded-md p-1"
             >
-              <option name="S">S</option>
-              <option name="M">M</option>
-              <option name="L">L</option>
-              <option name="XL">XL</option>
-              <option name="XXL">XXL</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
             </select>
           </div>
           <div className="flex gap-3 items-center">
@@ -138,9 +142,9 @@ const CreateListing = () => {
               id=""
               className="w-[220px] bg-secondary text-textDefault rounded-md p-1"
             >
-              <option name="new">new</option>
-              <option name="good">good</option>
-              <option name="okay">okay</option>
+              <option value="new">new</option>
+              <option value="good">good</option>
+              <option value="okay">okay</option>
             </select>
           </div>
           {/* <div>
