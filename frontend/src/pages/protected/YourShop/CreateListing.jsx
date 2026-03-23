@@ -15,10 +15,10 @@ const CreateListing = () => {
     title: "",
     description: "",
     price: "",
-    currency: "",
-    category: "",
-    size: "",
-    condition: ""
+    currency: "usd",
+    category: "tops",
+    size: "s",
+    condition: "good"
   });
 
   function HandleListingDetails(e) {
@@ -93,11 +93,10 @@ const CreateListing = () => {
               name="currency"
               value={listing.currency}
               onChange={HandleListingDetails}
-              id=""
               className=" w-[220px] bg-secondary p-1 rounded-md text-textDefault"
             >
-              <option  value={"usd"} >Usd</option>
-              <option  value={"zig"} >Zig</option>
+              <option  value="usd" >usd</option>
+              <option  value="zig" >zig</option>
             </select>
           </div>
           <div className="flex gap-4 items-center">

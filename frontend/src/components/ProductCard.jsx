@@ -1,11 +1,11 @@
 import React from "react";
-import PlaceHolder from '../assets/rethread_placeholder.svg'
+import PlaceHolder from '../assets/NoImage.png'
 
 const ProductCard = ({ listings }) => {
   return (
     <div className="h-[210px] shadow-lg rounded-[10px] p-2">
       <p>
-        <img src={listings.images || {PlaceHolder}} alt="" className="aspect-square rounded-[10px]" />
+        <img src={listings.images || PlaceHolder} alt="" className="aspect-square rounded-[10px]" />
       </p>
       <p className="text-[0.8rem] truncate">{listings.title}</p>
       <div className="flex justify-between">

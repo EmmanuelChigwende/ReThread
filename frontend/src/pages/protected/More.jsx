@@ -31,7 +31,7 @@ const More = () => {
               </h1>
               <ChevronRight />
             </div>
-            <div  className="hidden grid gap-1 pl-12">
+            <div  className=" grid gap-1 pl-12">
               <div>
                 <h2>Profile</h2>
               </div>
@@ -61,7 +61,7 @@ const More = () => {
               <div onClick={()=>navigate("/YourShop/DeleteListings")}>
                 <h2>Delete listings</h2>
               </div>
-              <div>
+              <div onClick={()=>navigate("/YourShop/UpdateListings")}>
                 <h2>Update Listings</h2>
               </div>
             </div>
@@ -81,7 +81,7 @@ const More = () => {
               </h1>
               <ChevronRight />
             </div>
-            <div className="hidden grid gap-1 pl-12">
+            <div className=" grid gap-1 pl-12">
               <div>
                 <h2>About Rethread</h2>
               </div>

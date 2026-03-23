@@ -34,6 +34,7 @@ const DeleteListings = () => {
       .then(
         (res)=>{
           toast.success("Listing Deleted Successfully")
+          setListing(listing.filter((item)=>item._id !== ListingId))
         }
       )
       .catch((err)=>{
